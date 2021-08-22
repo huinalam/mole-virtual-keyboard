@@ -1,6 +1,7 @@
 # mole-virtual-keyboard
 
-![logo](./docs/logo.png)
+![logo1](./docs/logo1.png)
+![logo2](./docs/logo2.png)
 
 한글 입력이 가능한 웹 전용 가상 키보드입니다.
 
