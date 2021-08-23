@@ -1,13 +1,14 @@
 # mole-virtual-keyboard
 
-![logo1](./docs/logo1.png)
-![logo2](./docs/logo2.png)
+![logo](./docs/logo.png)
 
-한글 입력이 가능한 웹 전용 가상 키보드입니다.
+## 설명
+
+한글 입력이 가능한 웹 전용 가상 키보드입니다. 한글 입력 뿐만 아니라, 이모지와 영어 입력을 지원합니다. input에서의 커서를 이동하더라도 키보드 입력이 가능합니다.
 
 ## DEMO
 
-![demo](./docs/demo.gif)
+![UI 적용 예](./docs/demo.gif "UI 적용 예")
 
 [Link](https://x42ky.csb.app/)
 
@@ -22,6 +23,29 @@ yarn add mole-virtual-keyboard
 ```
 
 ## Sample Code
+
+### API 예제
+
+```ts
+const input = document.createElement("input");
+const inputWrapper = new HangulImeInputWrapper(input);
+
+inputWrapper.insert("ㄱ");
+inputWrapper.insert("ㅏ");
+inputWrapper.insert("ㄱ");
+inputWrapper.insert("ㄱ");
+inputWrapper.insert(" ");
+inputWrapper.insert("😀");
+inputWrapper.insert("a");
+inputWrapper.insert("b");
+inputWrapper.insert("c");
+inputWrapper.backspace();
+
+console.log(input.value);
+// output : "각ㄱ 😀ab"
+```
+
+### input 적용 예제
 
 ```ts
 import { HangulImeInputWrapper } from "mole-virtual-keyboard";
@@ -44,9 +68,6 @@ export default function App() {
         <input
           ref={inputRef}
           type="text"
-          style={{
-            fontSize: "1.5rem",
-          }}
           onSelect={() => {
             inputWrapper?.checkChangedSelect();
           }}
@@ -65,6 +86,20 @@ export default function App() {
             </button>
           );
         })}
+        <button
+          onClick={() => {
+            inputWrapper?.insert(" ");
+          }}
+        >
+          space
+        </button>
+        <button
+          onClick={() => {
+            inputWrapper?.backspace();
+          }}
+        >
+          backspace
+        </button>
       </div>
     </div>
   );
@@ -75,4 +110,3 @@ export default function App() {
 
 - [Mole Virtual Keyboard](https://github.com/huinalam/mole-virtual-keyboard)
 - [Hangul IME](https://github.com/huinalam/hangul-ime)
-- [NPM Package](https://www.npmjs.com/package/mole-virtual-keyboard)
